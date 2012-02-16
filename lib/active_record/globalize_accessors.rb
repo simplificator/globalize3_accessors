@@ -10,6 +10,8 @@ module ActiveRecord
         attribs = translated_attribute_names
         attribs.each do |attr_name|
           languages.each do |with_locale|
+            attr_accessible :"#{attr_name}_#{with_locale}"
+          
             define_method :"#{attr_name}_#{with_locale}" do
               if @temp_attributes and @temp_attributes[with_locale][attr_name]
                 @temp_attributes[with_locale][attr_name]
